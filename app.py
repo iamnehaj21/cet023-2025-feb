@@ -3,7 +3,8 @@ from flask import request, render_template
 import google.generativeai as genai
 import os
 
-api = os.getenv("makersuite")
+api="AIzaSyAZ3vgxN_xzHI6IHDTploRUjiHdF8zriqc"
+#api = os.getenv("makersuite")
 
 genai.configure(api_key=api)
 model = genai.GenerativeModel("gemini-1.5-flash")
@@ -23,7 +24,7 @@ def makersuite():
 def gemini():
     q = request.form.get("q")
     r = model.generate_content(q)
-    return(render_template("gemini.html",r.candidates[0].content.parts[0].text))
+    return(render_template("gemini.html",r=r.candidates[0].content.parts[0].text))
 
 
 if __name__ == "__main__":
